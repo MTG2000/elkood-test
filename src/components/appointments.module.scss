@@ -1,0 +1,83 @@
+.card {
+  position: relative;
+  cursor: pointer;
+
+  background-color: transparent;
+  border: 0;
+  background: #fff;
+  box-shadow: 5px 9px 9px rgb(156, 156, 156);
+  h4,
+  h3,
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  &:nth-of-type(even) {
+    background: #ddd;
+  }
+  z-index: 1;
+
+  &.inProgess {
+    background: #fff;
+
+    box-shadow: 0 0 10px 2px rgba(72, 182, 255, 0.966);
+    z-index: 2;
+  }
+
+  @media screen and (max-width: 768px) {
+    h4,
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .trashIcon {
+    position: absolute;
+    right: 0px;
+    top: 41%;
+    color: #555;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    z-index: 3;
+  }
+
+  &:hover {
+    .trashIcon {
+      position: absolute;
+      right: 21px;
+      top: 41%;
+      color: #ccc;
+      opacity: 1;
+
+      &:hover {
+        transform: scale(1.3);
+        color: rgb(255, 74, 74);
+      }
+    }
+  }
+}
+.heartIcon {
+  animation: smallToBig 1.3s infinite forwards ease-in-out;
+  filter: drop-shadow(2px 3px 8px red);
+}
+
+@keyframes smallToBig {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.3);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.3);
+  }
+  80% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

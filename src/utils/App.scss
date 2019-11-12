@@ -1,0 +1,43 @@
+$primary: #17a2b8;
+$secondary: #555;
+
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Farro&display=swap");
+
+body {
+  min-height: 100vh;
+  font-family: Farro, Verdana, Geneva, Tahoma, sans-serif;
+  background: linear-gradient(45deg, rgb(235, 235, 235), rgb(248, 248, 248));
+}
+
+.my-6 {
+  margin-top: 180px !important;
+  margin-bottom: 180px !important;
+}
+.mt-6 {
+  margin-top: 180px !important;
+}
+.mb-6 {
+  margin-bottom: 180px !important;
+}
+
+.pt-6 {
+  padding-top: 180px !important;
+}
+
+.display-3 {
+  text-shadow: 3px 5px 20px #999;
+  @media screen and (max-width: 992px) {
+    font-size: 40px;
+  }
+}
+
+::selection {
+  background-color: $primary;
+  color: #fff;
+}
+
+.floatingList {
+  position: absolute;
+  z-index: 10000;
+}
