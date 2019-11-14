@@ -13,7 +13,8 @@ const style = {
   right: 40,
   bottom: 40,
   left: "auto",
-  position: "fixed"
+  position: "fixed",
+  zIndex: "100000"
 };
 
 function App() {

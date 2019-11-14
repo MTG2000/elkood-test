@@ -8,7 +8,7 @@ let intitalAppointments = [
   {
     id: 2,
     name: "Ahmad Al-Mousa",
-    blood: "A+",
+    blood: "A",
     date: "2018-02-03T02:45:00",
     phone: "0969783742",
     isEmergency: false,
@@ -25,7 +25,7 @@ let intitalAppointments = [
   {
     id: 4,
     name: "Louis Mardian",
-    blood: "B",
+    blood: "AB",
     date: "",
     phone: "0969432742",
     isEmergency: true
