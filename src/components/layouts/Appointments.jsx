@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
 import AppointmentCard from "../AppointmentCard";
+import { Container } from "@material-ui/core";
+import AppointmentInput from "../AppointmentInput";
+const uuidv1 = require("uuid/v1");
 
 let intitalAppointments = [
   {
@@ -35,90 +37,6 @@ let intitalAppointments = [
     date: "2018-02-17T02:15:00",
     phone: "0969783412",
     isEmergency: false
-  },
-  {
-    id: 6,
-    name: "Reem Abel",
-    blood: "AB",
-    date: "2018-02-17T02:15:00",
-    phone: "0969712212",
-    isEmergency: false
-  },
-  {
-    id: 7,
-    name: "Martin Hazem",
-    blood: "B",
-    date: "",
-    phone: "0969432742"
-  },
-  {
-    id: 8,
-    name: "Amir Lababide",
-    blood: "O",
-    date: "2018-02-17T02:15:00",
-    phone: "0969783412",
-    isEmergency: false
-  },
-  {
-    id: 9,
-    name: "Reem Abel",
-    blood: "AB",
-    date: "2018-02-17T02:15:00",
-    phone: "0969712212",
-    isEmergency: false
-  },
-  {
-    id: 11,
-    name: "Martin Hazem",
-    blood: "B",
-    date: "",
-    phone: "0969432742"
-  },
-  {
-    id: 12,
-    name: "Amir Lababide",
-    blood: "O",
-    date: "2018-02-17T02:15:00",
-    phone: "0969783412",
-    isEmergency: false
-  },
-  {
-    id: 13,
-    name: "Reem Abel",
-    blood: "AB",
-    date: "2018-02-17T02:15:00",
-    phone: "0969712212",
-    isEmergency: false
-  },
-  {
-    id: 14,
-    name: "Martin Hazem",
-    blood: "B",
-    date: "",
-    phone: "0969432742"
-  },
-  {
-    id: 15,
-    name: "Amir Lababide",
-    blood: "O",
-    date: "2018-02-17T02:15:00",
-    phone: "0969783412",
-    isEmergency: false
-  },
-  {
-    id: 16,
-    name: "Reem Abel",
-    blood: "AB",
-    date: "2018-02-17T02:15:00",
-    phone: "0969712212",
-    isEmergency: false
-  },
-  {
-    id: 17,
-    name: "Martin Hazem",
-    blood: "B",
-    date: "",
-    phone: "0969432742"
   }
 ];
 
@@ -131,12 +49,13 @@ const SortAppointments = (appointmentsArr, setAppointments) => {
   let emergrncyItems = [];
 
   appointmentsArr = appointmentsArr.map(a => {
-    if (a.isEmergency) {
-      emergrncyItems.push(a);
+    if (a.inProgress) {
+      if (a.isEmergency) inProgressItems.unshift(a);
+      else inProgressItems.push(a);
       return null;
     }
-    if (a.inProgress) {
-      inProgressItems.push(a);
+    if (a.isEmergency) {
+      emergrncyItems.push(a);
       return null;
     }
 
@@ -149,7 +68,10 @@ const SortAppointments = (appointmentsArr, setAppointments) => {
     else if (!b.date) return 1;
     return 0;
   });
-  appointmentsArr = appointmentsArr.concat(emergrncyItems, inProgressItems);
+  appointmentsArr = appointmentsArr.concat(
+    emergrncyItems,
+    inProgressItems.reverse()
+  );
   appointmentsArr.reverse();
   appointmentsSorted = true;
   setAppointments(appointmentsArr);
@@ -172,11 +94,26 @@ const Appointments = () => {
     setAppointments(newAppointments);
   };
 
+  const handleAdding = ({ name, date, isEmergency, blood, phone }) => {
+    appointmentsSorted = false;
+    setAppointments([
+      ...appointments,
+      { id: uuidv1(), name, date, isEmergency, blood, phone }
+    ]);
+  };
+
   const [appointments, setAppointments] = useState(intitalAppointments);
   if (!appointmentsSorted) SortAppointments(appointments, setAppointments);
 
   return (
     <Container className="pb-5 pt-6">
+      <h2
+        className="display-4 mb-4 text-white"
+        style={{ textShadow: "3px 5px 6px #555" }}
+        data-aos="zoom-out"
+      >
+        All Appointments :
+      </h2>
       {appointments.length > 0 ? (
         appointments.map(a => (
           <AppointmentCard
@@ -195,6 +132,7 @@ const Appointments = () => {
       ) : (
         <h2 className="h1 text-white">No Appointments Left ... :)</h2>
       )}
+      <AppointmentInput handleAdding={handleAdding} />
     </Container>
   );
 };

@@ -1,12 +1,16 @@
-$primary: #17a2b8;
+$primary: #2196f3;
 $secondary: #555;
 
 @import "~bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css?family=Farro&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   min-height: 100vh;
-  font-family: Farro, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
   background: linear-gradient(45deg, rgb(235, 235, 235), rgb(248, 248, 248));
 }
 
